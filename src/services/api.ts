@@ -1,5 +1,6 @@
-import { UserType } from '@/types/types';
 import axios from 'axios';
+
+import { UserType } from '@/types/types';
 
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
