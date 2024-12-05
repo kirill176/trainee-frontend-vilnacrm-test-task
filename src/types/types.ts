@@ -5,4 +5,3 @@ export interface UserType {
   address: string;
   phone: string;
 }
-// 

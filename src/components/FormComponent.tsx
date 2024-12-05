@@ -1,4 +1,5 @@
 import { TextField, Button, Box, Grid2 } from '@mui/material';
+import React from 'react';
 
 import useForm from '@/hooks/useForm';
 
@@ -30,6 +31,7 @@ function FormComponent() {
               fullWidth
               label="Name"
               name="name"
+              type="text"
               value={formValues.name}
               onChange={handleInputChange}
               error={!!formErrors.name}
@@ -39,6 +41,7 @@ function FormComponent() {
               fullWidth
               label="Email"
               name="email"
+              type="email"
               value={formValues.email}
               onChange={handleInputChange}
               error={!!formErrors.email}
@@ -50,6 +53,7 @@ function FormComponent() {
               fullWidth
               label="Phone"
               name="phone"
+              type="phone"
               value={formValues.phone}
               onChange={handleInputChange}
               error={!!formErrors.phone}
@@ -59,6 +63,7 @@ function FormComponent() {
               fullWidth
               label="Address"
               name="address"
+              type="text"
               value={formValues.address}
               onChange={handleInputChange}
             />

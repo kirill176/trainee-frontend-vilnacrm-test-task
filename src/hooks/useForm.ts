@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { fetchData, updateData } from '@/services/api';
+import { UserType } from '@/types/types';
 
 const useForm = () => {
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<UserType>({
     id: 0,
     name: '',
     email: '',
@@ -21,7 +22,6 @@ const useForm = () => {
       const response = await fetchData();
       const { id, name, email, phone, address } = response;
       const city = address?.city || '';
-
       setFormValues({ id, name, email, phone, address: city });
     } catch (error) {
       console.error(error);
@@ -34,8 +34,7 @@ const useForm = () => {
 
   const setUser = async () => {
     try {
-      const response = await updateData(formValues);
-      console.log(response);
+      await updateData(formValues);
     } catch (error) {
       console.error(error);
     }

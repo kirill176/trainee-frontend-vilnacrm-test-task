@@ -1,3 +1,4 @@
+import { UserType } from '@/types/types';
 import axios from 'axios';
 
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
@@ -19,7 +20,7 @@ export const fetchData = async () => {
   }
 };
 
-export const updateData = async (data: any) => {
+export const updateData = async (data: UserType) => {
   try {
     const response = await api.put(`/users/${data.id}`, data);
     return response.data;
