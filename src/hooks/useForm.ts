@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { fetchData, updateData } from '@/services/api';
 import { UserType } from '@/types/types';
@@ -17,7 +17,7 @@ const useForm = () => {
     phone: '',
   });
 
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     try {
       const response = await fetchData();
       const { id, name, email, phone, address } = response;
@@ -26,26 +26,22 @@ const useForm = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  useEffect(() => {
-    getUser();
   }, []);
 
-  const setUser = async () => {
+  const setUser = useCallback(async () => {
     try {
       await updateData(formValues);
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [formValues]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const validateForm = () => {
+  const validateForm = useCallback(() => {
     const errors: typeof formErrors = { name: '', email: '', phone: '' };
 
     if (!formValues.name) errors.name = 'Name is required.';
@@ -56,7 +52,7 @@ const useForm = () => {
     setFormErrors(errors);
 
     return !Object.values(errors).some((error) => error);
-  };
+  }, [formValues]);
 
   return {
     formValues,
@@ -65,6 +61,7 @@ const useForm = () => {
     handleInputChange,
     validateForm,
     setUser,
+    getUser,
   };
 };
 
