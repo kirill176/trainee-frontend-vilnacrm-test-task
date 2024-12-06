@@ -25,7 +25,7 @@ const theme = createTheme({
           },
           '& .MuiFormLabel-root': {
             fontSize: '1rem',
-            color: '#1565c0',
+            color: '#d399e9',
           },
           '& .MuiOutlinedInput-root': {
             borderColor: '#1976d2',
